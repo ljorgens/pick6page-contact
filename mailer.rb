@@ -32,6 +32,7 @@ end
 post '/' do
   email = ""
   params.each do |value|
+    puts value
     email += "#{value[0]}: #{value[1]}\n"
   end
   puts email
