@@ -14,6 +14,10 @@ whitelist = ENV['whitelist'].split
 
 set :protection, :origin_whitelist => whitelist
 
+puts ENV['MAILGUN_DOMAIN']
+puts ENV['MAILGUN_USERNAME']
+puts ENV['MAILGUN_PASSWORD']
+
 Pony.options = {
   :via => :smtp,
   :via_options => {
@@ -32,7 +36,6 @@ get '/' do
 end
 
 post '/' do
-  puts "FUCK!"
   email = ""
   params.each do |value|
     puts value
