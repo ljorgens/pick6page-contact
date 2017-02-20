@@ -32,6 +32,7 @@ get '/' do
 end
 
 post '/' do
+  puts "FUCK!"
   email = ""
   params.each do |value|
     puts value
