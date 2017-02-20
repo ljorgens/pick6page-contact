@@ -41,6 +41,7 @@ post '/' do
     puts value
     email += "#{value[0]}: #{value[1]}\n"
   end
+  puts "HERE"
   puts email
   Pony.mail(
     :to => ENV['email_recipients'],
