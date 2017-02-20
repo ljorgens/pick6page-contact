@@ -1,5 +1,7 @@
 require 'sinatra'
 require 'pony'
+require 'dotenv'
+Dotenv.load
 
 before do
     headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
@@ -15,11 +17,11 @@ set :protection, :origin_whitelist => whitelist
 Pony.options = {
   :via => :smtp,
   :via_options => {
-    :address => 'smtp.sendgrid.net',
+    :address => 'smtp.mailgun.org',
     :port => '587',
     :domain => 'heroku.com',
-    :user_name => ENV['SENDGRID_USERNAME'],
-    :password => ENV['SENDGRID_PASSWORD'],
+    :user_name => ENV['MAILGUN_USERNAME'],
+    :password => ENV['MAILGUN_PASSWORD'],
     :authentication => :plain,
     :enable_starttls_auto => true
   }
@@ -38,8 +40,8 @@ post '/' do
   puts email
   Pony.mail(
     :to => ENV['email_recipients'],
-    :from => 'www.pick6fan.com',
-    :subject => 'New Contact Form',
+    :from => 'www.sqwadapp.co',
+    :subject => 'Inbound From Website',
     :body => email
   )
 end
