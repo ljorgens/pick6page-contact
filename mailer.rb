@@ -14,10 +14,6 @@ whitelist = ENV['whitelist'].split
 
 set :protection, :origin_whitelist => whitelist
 
-puts ENV['MAILGUN_DOMAIN']
-puts ENV['MAILGUN_USERNAME']
-puts ENV['MAILGUN_PASSWORD']
-
 Pony.options = {
   :via => :smtp,
   :via_options => {
@@ -41,7 +37,6 @@ post '/' do
     puts value
     email += "#{value[0]}: #{value[1]}\n"
   end
-  puts "HERE"
   puts email
   Pony.mail(
     :to => ENV['email_recipients'],
