@@ -40,7 +40,7 @@ post '/' do
   puts email
   Pony.mail(
     :to => ENV['email_recipients'],
-    :from => 'www.sqwadapp.co',
+    :from => 'ljorgensen@sqwadapp.co',
     :subject => 'Inbound From Website',
     :body => email
   )
